@@ -902,9 +902,20 @@ def execute_transformation_job_sync(
                     select(CanonicalContent).where(CanonicalContent.source_id == job_record.source_id)
                 ).scalar_one_or_none()
                 if canonical is None or canonical.status != "completed":
-                    ci = ContentIntelligenceService(provider=LLMContentAnalysisProvider(base_provider))
-                    ci.analyze_source(session, job_record.source_id)
-                    session.commit()
+                    try:
+                        ci = ContentIntelligenceService(provider=LLMContentAnalysisProvider(base_provider))
+                        ci.analyze_source(session, job_record.source_id)
+                        session.commit()
+                    except Exception as ci_exc:
+                        _logger.warning(
+                            "Primary content intelligence failed; falling back to deterministic analysis",
+                            source_id=str(job_record.source_id),
+                            error=str(ci_exc),
+                        )
+                        from app.content_intelligence.fake_provider import FakeContentAnalysisProvider
+                        ci = ContentIntelligenceService(provider=FakeContentAnalysisProvider())
+                        ci.analyze_source(session, job_record.source_id)
+                        session.commit()
 
             llm_provider = MeteredLLMProvider(base_provider)
             res = run_transformation_job(session, job_uuid, llm_provider=llm_provider)

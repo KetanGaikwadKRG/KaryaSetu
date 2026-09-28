@@ -71,7 +71,19 @@ def _extract_retry_after(exc: BaseException) -> float | None:
                 return float(raw)
             except (TypeError, ValueError):
                 continue
+
+    # Also parse from error message strings (e.g. Google's "Please retry in 36.584s" or "retry after 30s")
+    import re
+    msg = str(exc)
+    match = re.search(r"retry\s+(?:in|after)\s+([0-9.]+)\s*s?", msg, re.IGNORECASE)
+    if match:
+        try:
+            return float(match.group(1))
+        except (TypeError, ValueError):
+            pass
+
     return None
+
 
 
 def classify_error(exc: BaseException) -> ErrorClassification:
