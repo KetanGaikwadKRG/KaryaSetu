@@ -70,6 +70,10 @@ OPENAI_MODELS = (
     ModelDescriptor(model_id="gpt-4o-mini", display_name="GPT-4o Mini", context_window=128000),
     ModelDescriptor(model_id="gpt-4o", display_name="GPT-4o", context_window=128000),
     ModelDescriptor(model_id="gpt-3.5-turbo", display_name="GPT-3.5 Turbo", context_window=16385),
+    ModelDescriptor(model_id="openai/gpt-oss-120b", display_name="GPT-OSS 120B (Groq)", context_window=128000),
+    ModelDescriptor(model_id="qwen/qwen3.8-27b", display_name="Qwen 3.8 27B (Groq)", context_window=128000),
+    ModelDescriptor(model_id="llama-3.3-70b-versatile", display_name="Llama 3.3 70B Versatile", context_window=128000),
+    ModelDescriptor(model_id="llama-3.1-8b-instant", display_name="Llama 3.1 8B Instant", context_window=128000),
 )
 
 GEMINI_MODELS = (
@@ -77,6 +81,8 @@ GEMINI_MODELS = (
     ModelDescriptor(model_id="gemini-1.5-pro", display_name="Gemini 1.5 Pro", context_window=2000000),
     ModelDescriptor(model_id="gemini-1.5-flash", display_name="Gemini 1.5 Flash", context_window=1000000),
     ModelDescriptor(model_id="gemini-3.6-flash", display_name="Gemini 3.6 Flash", context_window=1000000),
+    ModelDescriptor(model_id="gemini-3.8-flash", display_name="Gemini 3.8 Flash", context_window=1000000),
+    ModelDescriptor(model_id="gemini-flash-latest", display_name="Gemini Flash Latest", context_window=1000000),
 )
 
 LOCAL_MODELS = (

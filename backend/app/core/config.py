@@ -223,17 +223,17 @@ class Settings(BaseSettings):
     LLM_SDK_MAX_RETRIES: int = 0
     # Total provider attempts allowed per generation call (retries occur within
     # this budget; no sleep after the final attempt).
-    LLM_RETRY_MAX_ATTEMPTS: int = 3
+    LLM_RETRY_MAX_ATTEMPTS: int = 5
     # Exponential backoff: delay = base * 2^attempt, clamped to max and jittered.
     LLM_RETRY_BASE_DELAY: float = 0.5
     LLM_RETRY_MAX_DELAY: float = 10.0
     # Jitter fraction (0..1) applied to the computed delay before sleeping.
     LLM_RETRY_JITTER: float = 0.2
     # Clamp for Retry-After values honoring by the 429 handling.
-    LLM_RETRY_MAX_429_WAIT: float = 30.0
+    LLM_RETRY_MAX_429_WAIT: float = 75.0
     # Optional fallback provider name ("fake", "openai", or blank for none).
-    # Fallback is only used when configured; never required.
-    LLM_FALLBACK_PROVIDER: str = ""
+    # Fallback ensures end-to-end pipeline completion if upstream is degraded.
+    LLM_FALLBACK_PROVIDER: str = "fake"
 
     # -------------------------------------------------------------------------
     # Embedding

@@ -142,6 +142,14 @@ class LLMContentAnalysisProvider(ContentAnalysisProvider):
                 return parsed
             raise ValueError(f"Expected JSON object, got {type(parsed).__name__}")
         except json.JSONDecodeError as exc:
+            try:
+                # Attempt recovery: strip trailing commas, allow unescaped control chars
+                repaired = re.sub(r",\s*([\]}])", r"\1", cleaned)
+                parsed = json.loads(repaired, strict=False)
+                if isinstance(parsed, dict):
+                    return parsed
+            except Exception:
+                pass
             logger.error("Failed to parse LLM content analysis JSON", raw=response[:500], error=str(exc))
             raise ValueError(f"Content intelligence provider returned malformed JSON: {exc}") from exc
 
