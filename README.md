@@ -2,9 +2,8 @@
 
 ### One Trusted Source → Seven Governed Outputs
 
-[![Smart India Hackathon 2024](https://img.shields.io/badge/SIH-2024%20Submission-blue.svg)](https://www.sih.gov.in/)
+[![Problem Statement](https://img.shields.io/badge/SIH%20PS-26154-orange.svg)](#problem)
 [![Theme](https://img.shields.io/badge/Theme-Blockchain%20%26%20CyberSecurity-darkgreen.svg)](#security--governance)
-[![Problem Statement](https://img.shields.io/badge/PS-SIH%2026154-orange.svg)](#problem)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
