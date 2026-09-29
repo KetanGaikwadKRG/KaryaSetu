@@ -149,8 +149,8 @@ KaryaSetu/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/KetanGaikwadKRG/TransformIQ.git
-   cd TransformIQ
+   git clone https://github.com/KetanGaikwadKRG/KaryaSetu.git
+   cd KaryaSetu
    ```
 
 2. **Configure environment:**
@@ -243,7 +243,7 @@ The official 5-slide technical evaluation deck is located in the repository:
 
 ## 13. Source Code & Repository Metadata
 
-* **Repository URL:** `https://github.com/KetanGaikwadKRG/TransformIQ.git`
+* **Repository URL:** `https://github.com/KetanGaikwadKRG/KaryaSetu.git`
 * **Repository Owner:** `KetanGaikwadKRG`
 * **Active Branch:** `main`
 * **Commit Reference:** `d07bc3fe5eb48ee2bd4392021c6afb98d11aa72d`
