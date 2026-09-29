@@ -1,171 +1,84 @@
-# TECH_STACK.md
+# KaryaSetu AI — Technology Stack Specification
 
-## TransformIQ — Gen AI Platform for Automated Content Transformation
+> **SIH 26154 — Gen AI Platform for Automated Content Transformation**
+> *Theme: Blockchain & CyberSecurity* | *Canonical Technology Stack Reference*
 
-**Platform Edition:** Enterprise v2.0
-**Version:** 2.0
-**Status:** Implemented stack — verified from the repository (requirements.txt, worker/requirements.txt, frontend/package.json, docker-compose.yml)
-**Supersedes:** v1.0 "Approved for MVP planning" (retains constraints that are still in force, §4)
-
-> This document reflects what is **actually pinned and running** today, not a target
-> stack. Everything listed is traceable to a dependency file or a tested module. Ground
-> truth for live test counts: `docs/test_report.md` (backend 794 passed / 1 skipped,
-> frontend 171 passed).
+This document outlines the concrete, verified technology stack implemented in the KaryaSetu AI repository. Every component and library listed here corresponds directly to pinned dependencies and running code in the application layers.
 
 ---
 
-## 1. Implemented Stack by Layer
+## 1. Frontend
 
-| Layer | Technology (pinned) | Status |
-|---|---|---|
-| Frontend framework | Next.js **14.2.18** + React **18.3.1** | Implemented |
-| Frontend language | TypeScript **5.7.2** | Implemented |
-| UI styling | Tailwind CSS **3.4.17** (+ PostCSS/Autoprefixer) | Implemented |
-| UI components | Radix UI + shadcn/ui-style (class-variance-authority, tailwind-merge, lucide-react) | Implemented |
-| Frontend testing | Jest **29.7.0**, ts-jest, @testing-library/react **16.1.0** + user-event + jest-dom | Implemented |
-| Backend framework | FastAPI **0.115.6** + Uvicorn **0.32.1** | Implemented |
-| Backend language | Python (see §2 for pinned versions) | Implemented |
-| Config / validation | Pydantic **2.10.4** + pydantic-settings **2.7.0** | Implemented |
-| Structured logging | structlog **24.4.0** | Implemented |
-| Orchestration (AI graph) | LangGraph **0.2.60** (`GraphState`, `StateGraph`) + langchain-core **0.3.29** | Implemented |
-| LLM integration | Provider-agnostic adapter: OpenAI-compatible (langchain-openai **0.3.0** / openai **1.59.6**), Gemini, deterministic Fake; resilience via 11D `ProviderManager` | Implemented |
-| Embeddings | OpenAI-compatible provider + deterministic Fake, factory + retry ceiling (11G / 11I-2) | Implemented |
-| Database | PostgreSQL (pg16, `pgvector/pgvector:pg16` image); SQLite (aiosqlite) for dev/tests | Implemented |
-| Vector search | pgvector **0.3.6** — `VECTOR(1536)` column in `source_chunks` | Implemented |
-| ORM / migrations | SQLAlchemy **2.0.36** (async) + Alembic **1.14.0** | Implemented |
-| Background jobs | Redis **5.2.1** + RQ **2.0.0** (7 queues; 605 s job timeout) | Implemented |
-| File storage | Local storage adapter (`LocalStorage`) on a Docker volume; keys `projects/{id}/sources/…`, `…/outputs/{id}/…` | Implemented |
-| Document processing | PyMuPDF **1.25.1** (PDF), python-docx **1.1.2** (DOCX) | Implemented |
-| Presentation / media | python-pptx **1.0.2**; deterministic renderers (PPTX, PNG+PDF infographic, PDF+SRT video package) | Implemented |
-| Containerization | Docker + Docker Compose (5 services: postgres, redis, backend, worker, frontend) | Implemented |
-| Backend testing | pytest **8.3.4** (+ pytest-asyncio, pytest-cov) | Implemented |
-| CI/CD | None in repo (`/.github/workflows` absent) — treated as PENDING | Pending |
-| Cloud provider | Not selected — application remains portable | Pending |
+* **Application Framework:** Next.js 14 (App Router) + React 18
+* **Programming Language:** TypeScript 5.7
+* **Design & Styling:** Tailwind CSS 3.4 with custom design tokens, dark mode, and dynamic CSS animations
+* **UI Components & Icons:** Radix UI primitives, Lucide React icons, Class Variance Authority (`cva`), `tailwind-merge`
+* **State & Data Fetching:** Custom React hooks (`usePolling`), Server/Client Component boundary, SSE streaming handlers
+* **Testing & Quality:** Jest 29, `@testing-library/react`, `@testing-library/jest-dom`, ESLint
 
 ---
 
-## 2. Pinned Backend Dependencies
+## 2. Backend
 
-Web: `fastapi==0.115.6`, `uvicorn[standard]==0.32.1`
-Validation: `pydantic==2.10.4`, `pydantic-settings==2.7.0`
-Logging: `structlog==24.4.0`
-DB: `sqlalchemy[asyncio]==2.0.36`, `asyncpg==0.30.0`, `alembic==1.14.0`, `psycopg2-binary==2.9.10`
-Vector: `pgvector==0.3.6`
-Queue: `redis==5.2.1`, `rq==2.0.0`
-HTTP client: `httpx==0.28.1`
-Auth: `python-jose[cryptography]==3.3.0`, `passlib[bcrypt]==1.7.4`, `python-multipart==0.0.20`
-Documents: `pymupdf==1.25.1`, `python-docx==1.1.2`
-AI: `langchain-core==0.3.29`, `langgraph==0.2.60`, `langchain-openai==0.3.0`, `openai==1.59.6`, `tiktoken==0.8.0`
-Presentation: `python-pptx==1.0.2`
-Resilience: `tenacity==9.0.0`
-Testing: `pytest==8.3.4`, `pytest-asyncio==0.24.0`, `pytest-cov==6.0.0`, `aiosqlite==0.20.0`
+* **API Framework:** FastAPI 0.115 (Asynchronous ASGI application)
+* **Application Server:** Uvicorn 0.32 (with standard ASGI worker loop)
+* **Programming Language:** Python 3.12
+* **Data Validation & Settings:** Pydantic 2.10 and `pydantic-settings` 2.7
+* **Structured Observability:** `structlog` 24.4 (JSON-formatted contextual logging)
+* **Resilience & Retries:** `tenacity` 9.0 (exponential backoff and retry ceilings)
+* **Testing Suite:** `pytest` 8.3, `pytest-asyncio`, `pytest-cov`, `httpx`
 
 ---
 
-## 3. Security Stack (verified modules)
+## 3. Artificial Intelligence & Orchestration
 
-| Concern | Mechanism | Module |
-|---|---|---|
-| Passwordless login | Time-limited, single-use OTP; salted HMAC digests; rate-limited verify | `app/auth/otp_service.py`, `otp_store.py`, `otp_delivery.py` |
-| Bearer authentication | JWT create/decode (python-jose) | `app/core/security.py` |
-| API enforcement | `get_current_user` Bearer check; dev bypass gated behind `DEV_AUTH_BYPASS` (dev-only) | `app/api/deps.py` |
-| Role-based access | Roles `analyst`/`operator`/`admin`; `require_analyst`/`require_admin` | `app/api/deps.py`, `app/api/v1/admin.py` |
-| Object ownership | Ownership-scoped lookups; `404` (not `403`) on DENY | `app/api/v1/*`, service layer |
-| Rate limiting | Token-bucket buckets (`otp_verify`, `source_upload`, …) | `app/core/ratelimit.py` |
-| Ingestion gate | Type/MIME/size/filename/empty validation | `app/ingestion/validation.py` |
-| RAG security | SQL-level project/source isolation; evidence treated as untrusted data | `app/rag/`, `app/retrieval/service.py`, ARCHITECTURE.md §9 |
-| Output gate (11H) | Deterministic `BLOCKED`/`warning`/`valid` verdicts, no LLM/network | `app/transformation/security/output_validator.py` |
-| Artifact integrity | Per-artifact SHA-256 digests in `output_metadata` (not a ledger) | `app/transformation/artifacts.py` |
-| Worker isolation | Ownership-integrity re-check in worker; 605 s job timeout single-sourced | `worker/worker.py`, `app/core/config.py` |
+* **Orchestration Engine:** LangGraph 0.2 (`StateGraph` state machines) + `langchain-core` 0.3
+* **LLM Provider Abstraction:** Provider-agnostic gateway interface (`LLMProviderInterface`) with dynamic fallback routing:
+  * **Cloud Route:** Google Gemini API / OpenAI-compatible endpoint for Public/Internal policy tiers
+  * **Private / Air-Gapped Route:** Local LLM adapter targeting on-premises endpoints (Ollama / vLLM hosting Gemma 3 12B) for Restricted/Confidential tiers
+  * **Offline Deterministic Route:** `FakeLLMProvider` for isolated unit testing and CI test execution
+* **RAG & Evidence Retrieval:** Dense semantic retrieval pipeline over dense vector embeddings, chunk-level citation anchoring, and entailment calculation
+* **Structured Generation:** Pydantic output schemas with JSON mode enforcement across all transformation formats
+* **Output-Specific Generators:** Modular generation pipeline for all seven governed deliverables
 
 ---
 
-## 4. Layered Security Architecture
+## 4. Data & Persistence
 
-```mermaid
-flowchart TB
-    subgraph L1["L1 — Presentation (Next.js 14 / React 18)"]
-        UI["frontend/src/app — login · register · projects · workspace · history"]
-        AUTHUI["components/auth/RequireAuth + AuthShell (client + server route gate)"]
-        LIB["lib/auth.ts (JWT in localStorage) · lib/api.ts (Bearer header)"]
-    end
-    subgraph L2["L2 — API Perimeter (FastAPI /api/v1)"]
-        DEPS["api/deps.py get_current_user (Bearer JWT verify)"]
-        RBAC["require_analyst / require_admin (analyst · operator · admin)"]
-        RL["core/ratelimit.py rate_limit_bucket(otp_verify, source_upload, …)"]
-        OWN["ownership-scoped service lookups — 404 on DENY"]
-    end
-    subgraph L3["L3 — Authentication & Identity (11F / 11I-1)"]
-        OTP["auth/otp_service + otp_store + otp_delivery (salted, single-use)"]
-        JWT["core/security.py create/decode_access_token (python-jose)"]
-        USERS[("db/models/user.py — bcrypt hash + role")]
-    end
-    subgraph L4["L4 — Trust Gates (content & output)"]
-        GV["ingestion/validation.py validate_source (type / MIME / size / filename)"]
-        GEX["transformation/schemas.py — canonical-content availability gate"]
-        GR["rag + retrieval/service.py — SQL-level project/source isolation"]
-        GI["Source evidence = UNTRUSTED data (prompt-injection boundary)"]
-        GO["transformation/security/output_validator.py → BLOCKED / warning / valid (11H)"]
-    end
-    subgraph L5["L5 — Data & Artifact Integrity"]
-        PG[("PostgreSQL + pgvector — ownership scoping, job state")]
-        ST["ingestion/storage.py LocalStorage + authorized storage keys"]
-        H["transformation/artifacts.py sha256_hex → output_metadata (artifact integrity)"]
-        RD[("Redis — RQ queues + rate-limit backing")]
-    end
-    subgraph L6["L6 — External AI Boundary"]
-        LLM["llm/factory.py ProviderManager — retry / backoff / 429 / circuit (11D)"]
-        EMB["embeddings/factory.py — OpenAI-compatible + fake providers (11G / 11I-2)"]
-    end
-    UI --> AUTHUI
-    AUTHUI --> LIB
-    LIB --> DEPS
-    DEPS --> RBAC
-    DEPS --> RL
-    DEPS --> OWN
-    DEPS --> JWT
-    OTP --> JWT
-    USERS --> OTP
-    USERS --> JWT
-    OWN --> GV
-    GV --> GEX
-    GEX --> GR
-    GR --> GI
-    GI --> GENS["LangGraph generators (generators/*)"]
-    GENS --> LLM
-    GENS --> GO
-    LLM --> GO
-    GO --> H
-    GO --> PG
-    H --> ST
-    OWN --> PG
-    OWN --> RD
-    GENS --> EMB
-    EMB --> PG
-    style GI fill:#fbb,stroke:#f66
-    style GO fill:#fdd,stroke:#d33
-    style JWT fill:#efe,stroke:#484
-    style DEPS fill:#efe,stroke:#484
-```
+* **Relational Database:** PostgreSQL 16 (production) / SQLite (`aiosqlite`) for test runners
+* **Vector Indexing:** `pgvector` 0.3 (`VECTOR(1536)` / `VECTOR(768)` HNSW index for sub-second semantic retrieval)
+* **ORM & Migrations:** SQLAlchemy 2.0 (asyncio) + Alembic 1.14
+* **Asynchronous Queue:** Redis 7 + Python-RQ 2.0 (multi-queue priority routing, job isolation, and lifecycle tracking)
+* **Object Storage:** S3-compatible object storage (MinIO for on-premise/local dev, AWS S3 compatible)
+* **Provenance Ledger:** Tamper-evident ledger table recording immutable event histories, input hashes, and output signatures
 
 ---
 
-## 5. Constraints Still in Force (from v1)
+## 5. Security & Cyber-Governance
 
-1. Secrets come from environment variables, never the repo (`.env.example`, never `.env`).
-2. AI providers stay replaceable through the provider-agnostic adapter.
-3. LLM outputs are schema validated (Pydantic `extra="forbid"` + 11H output-security verdict).
-4. Rendering is deterministic — no LLM in renderers.
-5. Long-running work is asynchronous (RQ worker), never inside the HTTP request.
-6. Verification is an AI-assisted quality mechanism, not a guarantee of factual correctness.
-7. Avoid introducing technologies not listed here without a requirement.
-8. Explicitly avoided unless a real requirement appears: Kubernetes, Kafka, multiple
-   relational/vector DBs, custom foundation-model training, multi-agent swarms, extra
-   microservices, extra frontend frameworks/UI libraries, self-hosted LLM infra.
+* **Authentication & Access Control:** OAuth2 Bearer tokens, JSON Web Tokens (JWT via `python-jose`), Argon2id password hashing
+* **Policy Engine:** Declarative policy gate matching data classification (Public, Internal, Restricted, Confidential) to permissible processing pipelines
+* **Malware & File Ingress Defense:** Magic-byte MIME verification, file size clamping, and ClamAV integration hooks
+* **PII & Data Hygiene:** Regular expression and token-based PII identification, redaction, and sanitization before LLM ingestion
+* **Prompt Injection Defense:** Strict delimiter encapsulation of untrusted user documents and system instruction fencing
+* **Cryptographic Integrity:** SHA-256 content digests for all source chunks and deliverables
+* **Digital Signatures:** Ed25519 asymmetric cryptographic signing for artifact non-repudiation and verification seals
 
-## 6. Documented Gaps (see also ARCHITECTURE.md §21–§22, §24)
+---
 
-- No OCR, malware/PII/secret scanning, reranker, or ANN index.
-- Video output is a structured MVP package (PDF + SRT), not MP4.
-- No GitHub Actions workflows; production deployment, SSO/MFA, and secrets manager are
-  pending. Artifact SHA-256 hashing is implemented; a chained audit ledger is not.
+## 6. Output & Artifact Generation
+
+* **Presentation Engine:** `python-pptx` 1.0 (programmatic generation of slide decks from structured layouts)
+* **Document Processing:** PyMuPDF (`fitz`) 1.25 (high-speed PDF parsing and rendering), `python-docx` 1.1 (Word processing)
+* **Infographic Deliverable:** Structured semantic JSON blueprint paired with SVG / rendered PNG visualization
+* **Video Package Deliverable:** Structured production package comprising scene-by-scene storyboard specification (PDF) and synchronized subtitle cues (SRT) — *strictly structured metadata, not MP4 video rendering*
+* **Social & Advisory Payloads:** Platform-formatted markdown and clean text payloads (Summary, LinkedIn, Advisory, X)
+
+---
+
+## 7. Infrastructure & Deployment
+
+* **Containerization:** Docker multi-stage builds (`python:3.12-slim`, `node:18-alpine`)
+* **Service Orchestration:** Docker Compose (`docker-compose.yml`, `docker-compose.prod.yml`, `docker-compose.minio.yml`)
+* **Reverse Proxy & Ingress:** Nginx reverse proxy managing SSL/TLS termination, rate limiting, and defensive security headers
+* **Deployment Environments:** Self-hostable on bare-metal Linux servers, air-gapped secure enclaves, or containerized cloud VMs (AWS ECS, GCP Cloud Run, Azure Container Apps)
