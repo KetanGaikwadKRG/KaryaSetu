@@ -117,3 +117,12 @@ test-results/
 *.bak
 *.tmp
 .cache/
+
+# Design and UI Mockups
+design/
+
+
+# Scratch flowchart artifacts
+karyasetu_flowchart_slide.jpg
+karyasetu_process_workflow.html
+
