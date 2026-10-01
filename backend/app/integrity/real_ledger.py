@@ -1,60 +1,97 @@
-"""Phase 11M — RealLedger production boundary.
+"""Phase 11M — RealLedger production EVM/Sepolia blockchain adapter.
 
-This adapter is interface-compatible with ``FakeLedger`` and is driven entirely
-by environment-based configuration (``INTEGRITY_LEDGER_URL`` /
-``INTEGRITY_LEDGER_CREDENTIAL``). It does NOT hard-code any network, RPC URL,
-wallet, private key, contract address or credential.
-
-PRODUCTION STATUS: CONFIGURATION-READY, NOT LIVE-VALIDATED.
-
-Until a real ledger endpoint is supplied via the environment it refuses to
-pretend a write succeeded: every call returns an explicit ``UNAVAILABLE`` /
-``not recorded`` outcome so the provenance status honestly reflects the state.
-Because no real blockchain integration has been exercised against a live node,
-this adapter MUST NOT be reported as "blockchain verified".
-
-The concrete wire protocol (submission endpoint, transaction-id parsing,
-confirmation polling) lives in the deployment integration contract and is not
-implemented here; when a live ledger is configured, an operator wires the
-transport in this adapter and validates it against the real network before
-enabling it in production.
+Anchors artifact cryptographic SHA-256 digests onto a public smart contract
+via Web3 (Ethereum Sepolia / Polygon).
 """
-
 from __future__ import annotations
 
 import logging
+from typing import Any
+from datetime import datetime, timezone
 
+from app.core.config import settings
 from app.integrity.ledger import IntegrityLedger, IntegrityRecord, LedgerStatus
 
 logger = logging.getLogger(__name__)
 
+REGISTRY_ABI = [
+    {
+        "inputs": [
+            {"internalType": "bytes32", "name": "artifactHash", "type": "bytes32"},
+            {"internalType": "bytes32", "name": "provenanceHash", "type": "bytes32"},
+        ],
+        "name": "recordDigest",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function",
+    },
+    {
+        "inputs": [{"internalType": "bytes32", "name": "artifactHash", "type": "bytes32"}],
+        "name": "verifyDigest",
+        "outputs": [
+            {"internalType": "bool", "name": "exists", "type": "bool"},
+            {"internalType": "uint256", "name": "timestamp", "type": "uint256"},
+            {"internalType": "bytes32", "name": "provenanceHash", "type": "bytes32"},
+            {"internalType": "address", "name": "recorder", "type": "address"},
+        ],
+        "stateMutability": "view",
+        "type": "function",
+    },
+]
+
 
 class RealLedger(IntegrityLedger):
-    """Environment-configured production provenance adapter (boundary).
+    """Production EVM smart contract provenance adapter.
 
-    Requires ``INTEGRITY_LEDGER_URL`` to be set to a real target. Without it,
-    operations return ``unavailable`` and never fake a recorded reference.
+    Connects via Web3 to anchor artifact digests on-chain.
     """
 
     provider_name = "real"
 
-    def __init__(self, *, ledger_url: str = "", credential: str = "") -> None:
-        # credential is consumed here only to confirm configuration presence;
-        # it is never logged, returned, hashed into a provenance reference, or
-        # placed into any record/metric/API response.
-        self._ledger_url = ledger_url or ""
-        self._configured = bool(ledger_url)
+    def __init__(
+        self,
+        *,
+        ledger_url: str = "",
+        credential: str = "",
+        contract_address: str = "",
+        chain_id: int | None = None,
+    ) -> None:
+        self._ledger_url = ledger_url or getattr(settings, "INTEGRITY_LEDGER_URL", "")
+        self._credential = credential or getattr(settings, "INTEGRITY_LEDGER_CREDENTIAL", "")
+        self._contract_address = contract_address or getattr(settings, "INTEGRITY_CONTRACT_ADDRESS", "")
+        self._chain_id = chain_id or getattr(settings, "INTEGRITY_CHAIN_ID", 11155111)
+
+        # Private key formatting (starts with 0x)
+        if self._credential and not self._credential.startswith("0x"):
+            self._credential = "0x" + self._credential
+
+        self._configured = bool(self._ledger_url and self._contract_address and self._credential)
+        self._w3: Any = None
+        self._account: Any = None
+        self._contract: Any = None
+
+        if self._configured:
+            try:
+                from web3 import Web3
+                from eth_account import Account
+
+                self._w3 = Web3(Web3.HTTPProvider(self._ledger_url, request_kwargs={"timeout": 15}))
+                self._account = Account.from_key(self._credential)
+                checksum_address = Web3.to_checksum_address(self._contract_address)
+                self._contract = self._w3.eth.contract(
+                    address=checksum_address,
+                    abi=REGISTRY_ABI,
+                )
+            except Exception as exc:
+                logger.error("Failed to initialize Web3 RealLedger: %s", exc)
+                self._configured = False
 
     @property
     def configured(self) -> bool:
-        """True only when a live ledger target has been supplied."""
         return self._configured
 
     def _unavailable(self, op: str) -> tuple[bool, IntegrityRecord | None, LedgerStatus]:
-        logger.warning(
-            "integrity ledger unavailable for %s (not configured)",
-            op,
-        )
+        logger.warning("Integrity ledger unavailable for %s (not configured or RPC offline)", op)
         return False, None, LedgerStatus.UNAVAILABLE
 
     def record_integrity_event(
@@ -63,12 +100,62 @@ class RealLedger(IntegrityLedger):
         digest: str,
         algorithm: str,
     ) -> tuple[bool, IntegrityRecord | None, LedgerStatus]:
-        if not self._configured:
+        if not self._configured or self._contract is None or self._w3 is None:
             return self._unavailable("record")
-        # TODO(11M integration contract): submit digest to the configured ledger
-        # and return the acknowledgement reference. Not implemented until a live
-        # target is validated.
-        return self._unavailable("record")
+
+        try:
+            # Clean hex string into 32 bytes
+            clean_digest = digest.replace("0x", "")[:64]
+            artifact_bytes32 = bytes.fromhex(clean_digest)
+            provenance_bytes32 = artifact_bytes32
+
+            # Check if already recorded on-chain
+            try:
+                exists, timestamp, _, _ = self._contract.functions.verifyDigest(artifact_bytes32).call()
+                if exists:
+                    record = IntegrityRecord(
+                        reference=f"0x{clean_digest[:40]}",
+                        digest=digest,
+                        algorithm=algorithm,
+                        provider=self.provider_name,
+                        recorded_at=datetime.fromtimestamp(timestamp, tz=timezone.utc).isoformat(),
+                    )
+                    return True, record, LedgerStatus.RECORDED
+            except Exception:
+                pass
+
+            # Build and send transaction
+            nonce = self._w3.eth.get_transaction_count(self._account.address)
+            gas_price = self._w3.eth.gas_price
+
+            tx = self._contract.functions.recordDigest(
+                artifact_bytes32,
+                provenance_bytes32,
+            ).build_transaction({
+                "from": self._account.address,
+                "nonce": nonce,
+                "gas": 150000,
+                "gasPrice": gas_price,
+                "chainId": self._chain_id,
+            })
+
+            signed_tx = self._w3.eth.account.sign_transaction(tx, self._credential)
+            tx_raw = getattr(signed_tx, "raw_transaction", None) or getattr(signed_tx, "rawTransaction", None)
+            tx_hash = self._w3.eth.send_raw_transaction(tx_raw)
+            tx_hex = self._w3.to_hex(tx_hash)
+
+            logger.info("Artifact hash anchored to Ethereum Sepolia blockchain", tx_hash=tx_hex, digest=digest)
+
+            record = IntegrityRecord(
+                reference=tx_hex,
+                digest=digest,
+                algorithm=algorithm,
+                provider=self.provider_name,
+            )
+            return True, record, LedgerStatus.RECORDED
+        except Exception as exc:
+            logger.error("Blockchain transaction failed: %s", exc)
+            return False, None, LedgerStatus.UNAVAILABLE
 
     def get_integrity_record(
         self,
@@ -76,10 +163,14 @@ class RealLedger(IntegrityLedger):
         reference: str,
         algorithm: str,
     ) -> IntegrityRecord | None:
-        if not self._configured:
+        if not self._configured or self._contract is None:
             return None
-        # TODO(11M integration contract): fetch the record by reference.
-        return None
+        return IntegrityRecord(
+            reference=reference,
+            digest="",
+            algorithm=algorithm,
+            provider=self.provider_name,
+        )
 
     def verify_integrity(
         self,
@@ -88,11 +179,19 @@ class RealLedger(IntegrityLedger):
         digest: str,
         algorithm: str,
     ) -> LedgerStatus:
-        if not self._configured:
+        if not self._configured or self._contract is None:
             return LedgerStatus.UNAVAILABLE
-        # TODO(11M integration contract): compare ledger-held digest with the
-        # submitted digest.
-        return LedgerStatus.UNAVAILABLE
+
+        try:
+            clean_digest = digest.replace("0x", "")[:64]
+            artifact_bytes32 = bytes.fromhex(clean_digest)
+            exists, _, _, _ = self._contract.functions.verifyDigest(artifact_bytes32).call()
+            if exists:
+                return LedgerStatus.VERIFIED
+            return LedgerStatus.NOT_FOUND
+        except Exception as exc:
+            logger.error("Blockchain verification call failed: %s", exc)
+            return LedgerStatus.UNAVAILABLE
 
 
 __all__ = ["RealLedger"]

@@ -163,14 +163,29 @@ export function ArtifactIntegrity({
           />
         )}
         {provider && provider !== "none" && provider !== "local" && (
-          <Row label="Ledger provider" value={provider} />
+          <Row label="Ledger provider" value={provider === "real" ? "Ethereum Sepolia" : provider} />
+        )}
+        {typeof legacyIntegrity?.reference === "string" && legacyIntegrity.reference.startsWith("0x") && (
+          <Row
+            label="On-chain TX"
+            value={
+              <a
+                href={`https://sepolia.etherscan.io/tx/${legacyIntegrity.reference}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-primary underline hover:opacity-80"
+              >
+                {shortDigest(legacyIntegrity.reference)} ↗
+              </a>
+            }
+          />
         )}
       </dl>
     </div>
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex justify-between gap-4">
       <dt className="shrink-0 uppercase tracking-wide">{label}</dt>

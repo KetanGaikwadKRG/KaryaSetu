@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     """
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(".env", "../.env"),
         env_file_encoding="utf-8",
         case_sensitive=True,
         extra="ignore",
@@ -565,9 +565,12 @@ class Settings(BaseSettings):
     # committed secret). Left empty -> the real adapter reports 'unavailable'
     # rather than pretending a write succeeded.
     INTEGRITY_LEDGER_URL: str = ""
-    # Real-ledger credential reference (secret manager value only; never set to
-    # a literal in any repo file).
+    # Real-ledger credential reference (wallet private key for Web3 transaction signing)
     INTEGRITY_LEDGER_CREDENTIAL: str = ""
+    # Smart contract address on EVM (e.g. Sepolia / Polygon)
+    INTEGRITY_CONTRACT_ADDRESS: str = ""
+    # EVM Chain ID (11155111 for Ethereum Sepolia, 80002 for Polygon Amoy)
+    INTEGRITY_CHAIN_ID: int = 11155111
 
     # -------------------------------------------------------------------------
     # Evidence / fact verification (Phase 11N)
