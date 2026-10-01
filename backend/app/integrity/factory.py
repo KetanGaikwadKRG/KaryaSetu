@@ -29,6 +29,8 @@ def build_ledger() -> Optional[IntegrityLedger]:
         return RealLedger(
             ledger_url=settings.INTEGRITY_LEDGER_URL,
             credential=settings.INTEGRITY_LEDGER_CREDENTIAL,
+            contract_address=settings.INTEGRITY_CONTRACT_ADDRESS,
+            chain_id=settings.INTEGRITY_CHAIN_ID,
         )
     return None
 
