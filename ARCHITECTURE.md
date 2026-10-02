@@ -45,7 +45,8 @@ The system is organized into five vertically integrated execution layers backed 
 │                      TRUST & GOVERNANCE LAYER                          │
 │   Fact Verification (Grounding Score) • Consistency Cross-Check        │
 │   Human-in-the-Loop Approval • Dissemination Barrier (Air-Gap Export) │
-│         Cryptographic Provenance (SHA-256 Hashes & Ed25519 Signatures) │
+│   SHA-256 Content Digesting • Ed25519 Asymmetric Digital Signatures    │
+│   Ethereum Sepolia Smart Contract Anchoring (recordDigest/verifyDigest)│
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │
 ┌──────────────────────────────────▼─────────────────────────────────────┐
@@ -53,7 +54,8 @@ The system is organized into five vertically integrated execution layers backed 
 │  PostgreSQL 16 + pgvector : Relations, Source Chunks, Embeddings, State│
 │  Redis 7 + RQ             : Job Queues, Async Worker Pipeline, Locks   │
 │  MinIO / S3 Object Store  : Raw Uploads, Generated PPTX, PDF Artifacts │
-│  Ledger / Provenance Store: Tamper-Evident SHA-256 / Ed25519 Signatures│
+│  Blockchain Ledger (Web3) : Ethereum Sepolia EVM Smart Contract Anchor │
+│  Local Provenance Store   : Tamper-Evident Ledger with Invariant State │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -98,7 +100,7 @@ Every source document traverses an unbypassable eleven-stage pipeline:
 10. Integrity Seal  ────► SHA-256 payload digest + Ed25519 digital signature generation
        │
        ▼
-11. Provenance Store────► Immutable audit logging with execution trace metadata
+11. Provenance Store────► Ethereum Sepolia on-chain hash anchoring + immutable audit trail
 ```
 
 ---
@@ -107,7 +109,7 @@ Every source document traverses an unbypassable eleven-stage pipeline:
 
 KaryaSetu decouples transformation logic from model vendors through a robust provider interface (`LLMProviderInterface`):
 
-* **Allowed Cloud Providers:** Used for Public and Internal content when external transmission policies permit (e.g., Google Gemini 1.5/2.0 Flash via official API).
+* **Allowed Cloud Providers:** Used for Public and Internal content when external transmission policies permit (e.g., Groq high-speed inference hosting `openai/gpt-oss-120b` & `llama-3.3-70b-versatile`, or Google Gemini API).
 * **Local / Private Provider Route:** Designed for Restricted and Confidential data where external API egress is strictly barred. Routes requests to local inference servers (e.g., Ollama or vLLM hosting Gemma 3 12B) over air-gapped internal endpoints.
 * **Deterministic / Fake Provider:** Fully offline mock engine for unit testing, CI/CD validation, and zero-token deterministic integration testing.
 
@@ -121,6 +123,7 @@ KaryaSetu decouples transformation logic from model vendors through a robust pro
 * **Evidence Grounding:** Extracted outputs must cite source chunk IDs. Entailment scores flag ungrounded claims before presentation to users.
 * **Approval Gates:** High-sensitivity classifications require explicit cryptographic sign-off before artifacts can be exported.
 * **Cryptographic Provenance:** Generated outputs and compiled binary packages are sealed with SHA-256 hashes and signed with Ed25519 private keys stored in secure enclaves.
+* **Blockchain Hash Anchoring:** Post-generation verification hooks anchor 32-byte content digests directly to an Ethereum Sepolia smart contract (`0x8AEf680b6891E7e3cAdCBD4a499AbA1310F87c08`) via Web3.py, providing public, tamper-evident non-repudiation.
 
 ---
 

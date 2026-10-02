@@ -143,8 +143,7 @@ OTPs, passwords, or document content.
   across worker/API processes; production must set `RATE_LIMIT_BACKEND=redis`.
 - **Redis limiter fails open** on a Redis outage (a deliberate availability
   trade-off). Logged as `redis_rate_limit_unavailable_failing_open`.
-- **Audit events are logs, not tamper-proof DB rows.** They are durable only to
-  the extent the log pipeline is. No blockchain/immutable ledger is used.
+- **Audit events are emitted as structured JSON logs and database records.** Real-time tamper detection for generated artifacts is provided via the post-generation Ethereum Sepolia smart contract ledger (Phase 11M) and Ed25519 cryptographic signatures.
 
 ---
 
@@ -159,17 +158,16 @@ Operators must, before any real deployment:
 4. Keep `RATE_LIMIT_ENABLED=true` and review per-bucket limits.
 5. Keep `SECURITY_AUDIT_ENABLED=true`; route `security_event` records to the
    aggregation/alerting pipeline.
-6. Fill real LLM/Embedding/Bucket credentials only in the local gitignored `.env`
+6. Configure the blockchain integrity layer:
+   Set `INTEGRITY_PROVIDER=real`, `INTEGRITY_LEDGER_URL`, `INTEGRITY_CONTRACT_ADDRESS`, and `INTEGRITY_LEDGER_CREDENTIAL` for on-chain anchoring.
+7. Fill real LLM/Embedding/Bucket credentials only in the local gitignored `.env`
    (`LLM_API_KEY`, `EMBEDDING_API_KEY`, `STORAGE_*`); never leave placeholders.
-7. Restrict `ALLOWED_ORIGINS` to the real frontend origin(s).
+8. Restrict `ALLOWED_ORIGINS` to the real frontend origin(s).
 
 ---
 
-## 9. FUTURE PHASE (recommended, not in scope for 11K)
+## 9. IMPLEMENTED INTEGRITY & PROVENANCE (Phase 11M & 2H)
 
-- Persistent, tamper-evident audit store optionally backed by the DB on a
-  dedicated schema (this phase intentionally keeps audit as structured logs to
-  avoid a migration).
-- Cryptographic output signing / provenance for generated artifacts.
-- Per-user, not just per-IP, rate limiting and adaptive/abuse-triggered throttling.
-- WebApplication/API firewalling in front of the API.
+- **Blockchain Smart Contract Anchoring:** Ethereum Sepolia EVM smart contract (`0x8AEf680b6891E7e3cAdCBD4a499AbA1310F87c08`) stores immutable SHA-256 hashes (`recordDigest` / `verifyDigest`) via Web3.py.
+- **Cryptographic Output Signing:** Ed25519 asymmetric digital signatures (RFC 8032) seal every generated artifact for non-repudiation.
+- **Fail-Closed Policy Engine:** Pure Python deterministic policy gating prevents sensitive data from escaping to unauthorized cloud models.
