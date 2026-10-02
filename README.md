@@ -433,8 +433,11 @@ KaryaSetu/
 │   ├── OPERATIONS.md              # Disaster recovery, Redis failover, backup protocols
 │   ├── SECURITY.md                # Threat model, DLP mechanics, cryptographic proof
 │   └── evidence_verification.md   # Grounding formulas and claim validation methodology
-├── presentation/                  # Evaluator presentation deck
-│   └── KaryaSetu_Technical_Presentation.pptx # Official technical evaluation deck
+├── presentation/                  # Evaluator technical presentation
+│   ├── README.md                  # High-resolution visual gallery with all 5 slides
+│   ├── KaryaSetu_Technical_Presentation.pptx # Official PowerPoint presentation deck
+│   ├── KaryaSetu_Technical_Presentation.pdf  # Viewable/printable PDF presentation
+│   └── slides/                    # High-res 1080p slide screenshots (slide_1 to slide_5)
 ├── docker-compose.yml             # Full-stack multi-container orchestration
 ├── .env.example                   # Sanitized environment template
 ├── ARCHITECTURE.md                # Comprehensive system architecture specification
