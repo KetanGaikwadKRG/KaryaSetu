@@ -34,7 +34,7 @@ This document outlines the concrete, verified technology stack implemented in th
 
 * **Orchestration Engine:** LangGraph 0.2 (`StateGraph` state machines) + `langchain-core` 0.3
 * **LLM Provider Abstraction:** Provider-agnostic gateway interface (`LLMProviderInterface`) with dynamic fallback routing:
-  * **Cloud Route:** Google Gemini API / OpenAI-compatible endpoint for Public/Internal policy tiers
+  * **Cloud Route:** Groq (`openai/gpt-oss-120b`, `llama-3.3-70b-versatile`) / Google Gemini API / OpenAI-compatible gateway for Public/Internal policy tiers
   * **Private / Air-Gapped Route:** Local LLM adapter targeting on-premises endpoints (Ollama / vLLM hosting Gemma 3 12B) for Restricted/Confidential tiers
   * **Offline Deterministic Route:** `FakeLLMProvider` for isolated unit testing and CI test execution
 * **RAG & Evidence Retrieval:** Dense semantic retrieval pipeline over dense vector embeddings, chunk-level citation anchoring, and entailment calculation
@@ -50,7 +50,8 @@ This document outlines the concrete, verified technology stack implemented in th
 * **ORM & Migrations:** SQLAlchemy 2.0 (asyncio) + Alembic 1.14
 * **Asynchronous Queue:** Redis 7 + Python-RQ 2.0 (multi-queue priority routing, job isolation, and lifecycle tracking)
 * **Object Storage:** S3-compatible object storage (MinIO for on-premise/local dev, AWS S3 compatible)
-* **Provenance Ledger:** Tamper-evident ledger table recording immutable event histories, input hashes, and output signatures
+* **Blockchain Provenance Ledger:** Web3.py + Ethereum Sepolia EVM Smart Contract (`0x8AEf680b6891E7e3cAdCBD4a499AbA1310F87c08`) recording immutable 32-byte artifact digests and transaction hashes (`recordDigest` / `verifyDigest`)
+* **Local Provenance Ledger:** Tamper-evident in-database ledger table recording immutable event histories, input hashes, and output signatures for offline/air-gapped deployments
 
 ---
 
@@ -63,6 +64,7 @@ This document outlines the concrete, verified technology stack implemented in th
 * **Prompt Injection Defense:** Strict delimiter encapsulation of untrusted user documents and system instruction fencing
 * **Cryptographic Integrity:** SHA-256 content digests for all source chunks and deliverables
 * **Digital Signatures:** Ed25519 asymmetric cryptographic signing for artifact non-repudiation and verification seals
+* **Decentralized Verification:** Real-time on-chain verification calling smart contract `verifyDigest()` with direct Sepolia Etherscan transaction inspection
 
 ---
 
