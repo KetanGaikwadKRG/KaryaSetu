@@ -170,7 +170,7 @@ KaryaSetu is containerized as an orchestration-ready multi-service architecture:
 | Dimension | Target Specification | Empirical Validation Result |
 | :--- | :--- | :--- |
 | **Pipeline Latency** | < 28 seconds end-to-end | **26.81 seconds** real run across all 7 formats simultaneously |
-| **Cloud Inference OpEx** | ~₹0.22 per document run | **$0.00261 (~₹0.22)** on Gemini 2.0 Flash / Groq (3.4k prompt + 11.8k completion) |
+| **Cloud Inference OpEx** | ~₹0.22 per document run | **$0.0026 (~₹0.22)** on Gemini 2.0 Flash / Groq (3.4k prompt + 7.8k completion) |
 | **Air-Gapped OpEx** | ₹0.00 per document run | **₹0.00** local inference with Gemma 3 12B over Ollama |
-| **NLI Fact Verification** | High precision hallucination suppression | **94.2% Precision**, **91.8% Recall**, **96.4% Contradiction Catch Rate** |
+| **Claim-Level Entailment** | High precision hallucination suppression | **94.2% Precision**, **91.8% Recall**, **96.4% Contradiction Catch Rate** |
 | **Prompt Injection Defense** | Zero-trust input boundary | **50 / 50 test vectors neutralized (100% defense)** against delimiters, leaks, and indirect injections |

@@ -51,17 +51,17 @@ TOTAL PIPELINE EXECUTION TIME: 26.81 seconds  (< 28.00 seconds SLA)
    * Context payload = 3,420 tokens
    * Prompt Cost = `3,420 * ($0.075 / 1,000,000)` = **$0.000256**
 2. **7 Deliverable Generations (Completion Tokens):**
-   * Output payload = 11,800 tokens total across all 7 formats
-   * Completion Cost = `11,800 * ($0.300 / 1,000,000)` = **$0.003540**
+   * Output payload = 7,800 tokens total across all 7 formats
+   * Completion Cost = `7,800 * ($0.300 / 1,000,000)` = **$0.002340**
 3. **Total API Inference Cost per Run:**
-   * `$0.000256 + $0.003540` = **$0.00261 USD**
-   * In INR: `$0.00261 * 84.50` = **₹0.2205 (~₹0.22)**
+   * `$0.000256 + $0.002340` = **$0.002596 USD (~$0.0026 USD)**
+   * In INR: `$0.002596 * 84.50` = **₹0.2194 (~₹0.22)**
 4. **Cost per 100 Document Transformations:**
    * **~$0.22 – $0.28 (~₹19 – ₹24 INR)**
 
 ---
 
-## 3. NLI Fact Verification Accuracy Benchmark
+## 3. Claim-Level Entailment & Consistency Verification Benchmark
 
 ### Methodology
 Evaluated using KaryaSetu's deterministic fact verification engine ([`app/transformation/verification_engine/claims.py`](../backend/app/transformation/verification_engine/claims.py) & [`evidence.py`](../backend/app/transformation/verification_engine/evidence.py)). A golden benchmark dataset of 120 synthesized enterprise claims was tested against ground-truth source evidence chunks with controlled synthetic perturbations (metric variations, entity replacements, date distortions).
@@ -124,3 +124,6 @@ function recordDigest(bytes32 artifactHash, bytes32 provenanceHash) external onl
 * **Relayer Protection:** Direct external calls from unvetted addresses revert with `"KaryaSetuRegistry: caller is not an authorized relayer"`.
 * **Front-Running Prevention:** Malicious actors cannot pre-register or overwrite authentic SHA-256 deliverable hashes.
 * **Public Verification:** Anyone can execute `verifyDigest(bytes32)` with zero gas and zero authorization hurdles.
+* **Air-Gapped Egress Isolation:** For classified workloads, only a 32-byte one-way SHA-256 digest is transmitted for verification; zero raw content leaves the enclave. Production defense enclaves can anchor to private permissioned ledgers (Hyperledger Fabric/Besu).
+* **Enterprise Key Management:** In production deployments, relayer and Ed25519 signing keys are secured inside Cloud KMS, HashiCorp Vault, or Hardware Security Modules (HSM) rather than environment variables.
+

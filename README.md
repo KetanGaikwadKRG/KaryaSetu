@@ -259,6 +259,8 @@ contract KaryaSetuRegistry {
 1. **Interactive Results Card:** Each generated output includes an **`Integrity · VERIFIED`** badge. Clicking it reveals the SHA-256 digest, the ledger provider (`Ethereum Sepolia`), and a direct link (`https://sepolia.etherscan.io/tx/0x...`) to the transaction on Sepolia Etherscan.
 2. **On-Demand Verification:** Clicking the **"Verify Integrity Now"** button triggers `POST /api/v1/outputs/{id}/integrity/verify`, which queries `verifyDigest()` directly from the contract via Web3.py.
 3. **Ed25519 Asymmetric Signatures:** Deliverables are simultaneously signed using an Ed25519 cryptographic private key (RFC 8032) for instant local mathematical validation.
+4. **Air-Gapped Egress Boundary:** For restricted institutional deliverables, zero source context or derivative text ever leaves the local enclave. Only an irreversible 32-byte SHA-256 digest is transmitted for public verification. For sovereign defense environments, the ledger adapter targets an internal permissioned network (Hyperledger Fabric / Besu).
+5. **Enterprise Key Management:** While local development environments configure keys via environment settings, production enterprise deployments integrate with Cloud KMS, HashiCorp Vault, or Hardware Security Modules (HSM) for signing and relayer key security.
 
 ---
 
@@ -278,7 +280,7 @@ KaryaSetu enforces a strict defense-in-depth posture aligned with **NIST SP 800-
 
 ### LLM Provider Gateway
 KaryaSetu abstracts generative models through an extensible `LLMProviderInterface`:
-* **Public / Cloud Route:** Integrates **Google Gemini 2.0 Flash** or **Groq (`openai/gpt-oss-120b`, `llama-3.3-70b-versatile`)** for sub-second, cost-effective generation of Public and Internal data.
+* **Public / Cloud Route:** Integrates **Google Gemini 2.0 Flash** or **Groq (`openai/gpt-oss-120b`, `llama-3.3-70b-versatile`)** for high-speed, cost-effective generation of Public and Internal data.
 * **Air-Gapped Sovereign Route:** Dedicated on-premise adapter targeting local inference runtimes (**Ollama / vLLM hosting Gemma 3 12B**). Strictly enforced for `CONFIDENTIAL` and `RESTRICTED` documents with zero external network access.
 * **Deterministic Fake Provider:** Offline mock engine for high-speed CI/CD pipeline tests and deterministic integration validation.
 
@@ -511,12 +513,12 @@ TOTAL PIPELINE EXECUTION TIME: 26.81 seconds  (< 28.00 seconds SLA)
 ### B. Cloud LLM Inference Cost Breakdown (~₹0.22 / Document)
 Using Google Gemini 2.0 Flash / Groq token rates ($0.075 / 1M prompt tokens, $0.30 / 1M completion tokens at ₹84.50 / USD):
 * **Ingress Prompt / Source Evidence:** 3,420 tokens × $0.000000075 = **$0.000256**
-* **7 Output Synthesis (Total Completion):** 11,800 tokens × $0.00000030 = **$0.003540**
-* **Total Inference Cost per Full 7-Deliverable Run:** **$0.00261 (~₹0.2205)**
+* **7 Output Synthesis (Total Completion):** 7,800 tokens × $0.00000030 = **$0.002340**
+* **Total Inference Cost per Full 7-Deliverable Run:** **$0.000256 + $0.002340 = $0.002596 (~₹0.219 / ~₹0.22)**
 * **Cost for 100 Comprehensive Transformations:** **~$0.22 – $0.28 (~₹19 – ₹24)**
 * **Air-Gapped Tier Cost:** **₹0.00** (Local Gemma 3 12B over Ollama/vLLM on existing hardware).
 
-### C. NLI Fact Verification Accuracy Metrics
+### C. Claim-Level Entailment & Consistency Verification Metrics
 KaryaSetu's claim-level NLI verification engine (`verification_engine/claims.py` & `evidence.py`) was evaluated against a golden test dataset of 120 synthesized enterprise claims mapped to authoritative source ground truth:
 
 | Metric | Measured Score | Evaluation Target & Methodology |
