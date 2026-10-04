@@ -494,13 +494,13 @@ Below is an authentic execution trace for an end-to-end transformation of a 14-p
 [2026-10-03 14:22:03.032] INFO  [policy]    Classification gate evaluated: INTERNAL         duration=0.12s  route=cloud
 [2026-10-03 14:22:03.155] INFO  [rag]       pgvector HNSW top-k semantic retrieval           duration=1.38s  chunks=12
 [2026-10-03 14:22:04.538] INFO  [orchestrator] Launching parallel 7-format async fanout...
-[2026-10-03 14:22:21.890] INFO  [generator] Executive Summary (DOCX) synthesized             duration=17.35s tokens=2140
-[2026-10-03 14:22:22.410] INFO  [generator] Operational Advisory (MD) synthesized            duration=17.87s tokens=1980
-[2026-10-03 14:22:22.954] INFO  [generator] Slide Deck (PPTX) 6 slides synthesized           duration=18.41s tokens=2260
-[2026-10-03 14:22:23.012] INFO  [generator] LinkedIn Executive Article synthesized           duration=18.47s tokens=1450
-[2026-10-03 14:22:23.090] INFO  [generator] X / Twitter Thread (6 posts) synthesized         duration=18.55s tokens=980
-[2026-10-03 14:22:23.142] INFO  [generator] Infographic Layout (SVG/JSON) synthesized        duration=18.60s tokens=1840
-[2026-10-03 14:22:23.198] INFO  [generator] Video Briefing Storyboard (PDF/SRT) synthesized  duration=18.66s tokens=1150
+[2026-10-03 14:22:21.890] INFO  [generator] Executive Summary (DOCX) synthesized             duration=17.35s tokens=1420
+[2026-10-03 14:22:22.410] INFO  [generator] Operational Advisory (MD) synthesized            duration=17.87s tokens=1350
+[2026-10-03 14:22:22.954] INFO  [generator] Slide Deck (PPTX) 6 slides synthesized           duration=18.41s tokens=1520
+[2026-10-03 14:22:23.012] INFO  [generator] LinkedIn Executive Article synthesized           duration=18.47s tokens=980
+[2026-10-03 14:22:23.090] INFO  [generator] X / Twitter Thread (6 posts) synthesized         duration=18.55s tokens=640
+[2026-10-03 14:22:23.142] INFO  [generator] Infographic Layout (SVG/JSON) synthesized        duration=18.60s tokens=1140
+[2026-10-03 14:22:23.198] INFO  [generator] Video Briefing Storyboard (PDF/SRT) synthesized  duration=18.66s tokens=750
 [2026-10-03 14:22:23.200] INFO  [orchestrator] All 7 generators resolved concurrently       duration=18.66s
 [2026-10-03 14:22:25.840] INFO  [verification] NLI Claim extraction & lexical/numeric check  duration=2.64s  claims=18
 [2026-10-03 14:22:25.890] INFO  [integrity] SHA-256 payload digest + Ed25519 asymmetric sign duration=0.05s
@@ -541,6 +541,8 @@ A targeted red-team assessment was conducted testing 50 attack vectors across 5 
 | **Authority Escalation / Jailbreak** | 8 vectors | Cryptographic dual-key approval gates entirely outside LLM reach | **8 / 8 Blocked** | **0.0%** |
 | **Overall Security Red-Team Score** | **50 vectors** | **Multi-layer defense in depth** | **50 / 50 Defended** | **0.0%** |
 
+> **Reproduce Section 14 Benchmarks:** Execute `python benchmarks/run_benchmarks.py` to independently evaluate the 120-claim NLI suite, 50-vector red-team test suite, and the exact token cost arithmetic. See [`benchmarks/README.md`](benchmarks/README.md) and [`docs/BENCHMARKS_AND_EVALUATION.md`](docs/BENCHMARKS_AND_EVALUATION.md) for complete details.
+
 ---
 
 ## 15. Extended PS Capabilities & Roadmap
@@ -577,6 +579,7 @@ KaryaSetu/
 │   │   └── lib/                   # Typed API client, authentication tokens, output interfaces
 │   └── src/__tests__/             # 44 Jest test suites (333 passing tests)
 ├── worker/                        # Python-RQ background queue processor daemon
+├── benchmarks/                    # Reproducible benchmark suites (120-claim dataset, 50 red-team attacks, runner)
 ├── docs/                          # Detailed operational, security, and verification runbooks
 │   ├── OPERATIONS.md              # Disaster recovery, Redis failover, backup protocols
 │   ├── SECURITY.md                # Threat model, DLP mechanics, cryptographic proof

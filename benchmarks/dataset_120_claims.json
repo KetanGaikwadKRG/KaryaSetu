@@ -1,0 +1,1092 @@
+{
+  "version": "1.0.0",
+  "description": "KaryaSetu NLI Claim Verification Ground Truth Dataset (120 Claims)",
+  "total_claims": 120,
+  "distribution": {
+    "supported": 68,
+    "contradicted": 28,
+    "unverified": 24
+  },
+  "claims": [
+    {
+      "id": "CLAIM-001",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 1.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-002",
+      "domain": "pension_regulations",
+      "premise": "Clause 2.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-003",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 3.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-004",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 4.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-005",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 5.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-006",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 6.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-007",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 7.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-008",
+      "domain": "pension_regulations",
+      "premise": "Clause 8.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-009",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 9.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-010",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 10.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-011",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 11.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-012",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 12.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-013",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 13.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-014",
+      "domain": "pension_regulations",
+      "premise": "Clause 14.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-015",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 15.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-016",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 16.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-017",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 17.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-018",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 18.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-019",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 19.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-020",
+      "domain": "pension_regulations",
+      "premise": "Clause 20.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-021",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 21.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-022",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 22.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-023",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 23.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-024",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 24.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-025",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 25.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-026",
+      "domain": "pension_regulations",
+      "premise": "Clause 26.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-027",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 27.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-028",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 28.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-029",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 29.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-030",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 30.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-031",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 31.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-032",
+      "domain": "pension_regulations",
+      "premise": "Clause 32.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-033",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 33.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-034",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 34.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-035",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 35.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-036",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 36.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-037",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 37.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-038",
+      "domain": "pension_regulations",
+      "premise": "Clause 38.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-039",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 39.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-040",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 40.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-041",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 41.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-042",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 42.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-043",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 43.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-044",
+      "domain": "pension_regulations",
+      "premise": "Clause 44.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-045",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 45.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-046",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 46.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-047",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 47.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-048",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 48.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-049",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 49.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-050",
+      "domain": "pension_regulations",
+      "premise": "Clause 50.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-051",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 51.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-052",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 52.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-053",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 53.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-054",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 54.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-055",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 55.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-056",
+      "domain": "pension_regulations",
+      "premise": "Clause 56.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-057",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 57.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-058",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 58.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-059",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 59.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-060",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 60.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-061",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 61.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-062",
+      "domain": "pension_regulations",
+      "premise": "Clause 62.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-063",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 63.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-064",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 64.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-065",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 65.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-066",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 66.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-067",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 67.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-068",
+      "domain": "pension_regulations",
+      "premise": "Clause 68.2: The designated authority must complete tender verification within 14 working days of receipt. All submissions require dual-factor biometric or hardware token authentication.",
+      "hypothesis": "The designated authority is obligated to verify tenders within 14 working days using dual-factor biometric or hardware token authentication.",
+      "label": "SUPPORTED",
+      "expected_nli": "entailment",
+      "tolerance_numeric": "exact"
+    },
+    {
+      "id": "CLAIM-069",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 69.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-070",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 70.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-071",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 71.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-072",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 72.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-073",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 73.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-074",
+      "domain": "pension_regulations",
+      "premise": "Clause 74.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-075",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 75.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-076",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 76.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-077",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 77.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-078",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 78.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-079",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 79.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-080",
+      "domain": "pension_regulations",
+      "premise": "Clause 80.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-081",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 81.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-082",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 82.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-083",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 83.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-084",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 84.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-085",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 85.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-086",
+      "domain": "pension_regulations",
+      "premise": "Clause 86.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-087",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 87.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-088",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 88.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-089",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 89.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-090",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 90.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-091",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 91.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-092",
+      "domain": "pension_regulations",
+      "premise": "Clause 92.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-093",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 93.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-094",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 94.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-095",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 95.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-096",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 96.4: All cryptographic digests anchored on the public ledger must use 256-bit SHA-256 hashes. Raw document payloads shall never be published on-chain.",
+      "hypothesis": "Raw document payloads are stored directly on the public Ethereum blockchain to ensure transparency.",
+      "label": "CONTRADICTED",
+      "expected_nli": "contradiction",
+      "tolerance_numeric": "flagged_mismatch"
+    },
+    {
+      "id": "CLAIM-097",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 97.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-098",
+      "domain": "pension_regulations",
+      "premise": "Clause 98.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-099",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 99.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-100",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 100.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-101",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 101.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-102",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 102.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-103",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 103.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-104",
+      "domain": "pension_regulations",
+      "premise": "Clause 104.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-105",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 105.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-106",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 106.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-107",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 107.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-108",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 108.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-109",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 109.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-110",
+      "domain": "pension_regulations",
+      "premise": "Clause 110.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-111",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 111.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-112",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 112.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-113",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 113.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-114",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 114.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-115",
+      "domain": "procurement_guidelines",
+      "premise": "Clause 115.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-116",
+      "domain": "pension_regulations",
+      "premise": "Clause 116.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-117",
+      "domain": "cybersecurity_incident_response",
+      "premise": "Clause 117.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-118",
+      "domain": "pwd_accessibility_standards",
+      "premise": "Clause 118.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-119",
+      "domain": "infrastructure_tendering",
+      "premise": "Clause 119.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    },
+    {
+      "id": "CLAIM-120",
+      "domain": "data_protection_dpdp_act",
+      "premise": "Clause 120.1: Micro, Small, and Medium Enterprises (MSMEs) qualify for an exemption of Earnest Money Deposit (EMD) upon submitting a valid Udyam registration certificate.",
+      "hypothesis": "MSMEs are automatically granted 100% subsidy on international travel and foreign vendor onboarding costs.",
+      "label": "UNVERIFIED",
+      "expected_nli": "neutral",
+      "tolerance_numeric": "unsupported_extrapolation"
+    }
+  ]
+}
