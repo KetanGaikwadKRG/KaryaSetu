@@ -103,7 +103,7 @@ flowchart TD
     B --> C[DLP Gateway: Deterministic Regex PII Sanitization]
     C --> D[Classification Engine: Public, Internal, Confidential, Restricted]
     D --> E{Deterministic Policy Gate}
-    E -->|Public / Internal| F1[Cloud LLM Route: Groq / Gemini 2.5 Flash]
+    E -->|Public / Internal| F1[Cloud LLM Route: Groq / Gemini 2.0 Flash]
     E -->|Confidential / Restricted| F2[Air-Gapped Route: Local Gemma 3 12B]
     E -->|Policy Violation| F3[403 Forbidden: Egress Hard-Blocked]
     F1 --> G[Dense pgvector Retrieval & Evidence Grounding]
@@ -277,7 +277,7 @@ KaryaSetu enforces a strict defense-in-depth posture aligned with **NIST SP 800-
 
 ### LLM Provider Gateway
 KaryaSetu abstracts generative models through an extensible `LLMProviderInterface`:
-* **Public / Cloud Route:** Integrates **Google Gemini 2.5 Flash** or **Groq (`openai/gpt-oss-120b`, `llama-3.3-70b-versatile`)** for sub-second, cost-effective generation of Public and Internal data.
+* **Public / Cloud Route:** Integrates **Google Gemini 2.0 Flash** or **Groq (`openai/gpt-oss-120b`, `llama-3.3-70b-versatile`)** for sub-second, cost-effective generation of Public and Internal data.
 * **Air-Gapped Sovereign Route:** Dedicated on-premise adapter targeting local inference runtimes (**Ollama / vLLM hosting Gemma 3 12B**). Strictly enforced for `CONFIDENTIAL` and `RESTRICTED` documents with zero external network access.
 * **Deterministic Fake Provider:** Offline mock engine for high-speed CI/CD pipeline tests and deterministic integration validation.
 
