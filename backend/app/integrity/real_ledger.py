@@ -51,32 +51,47 @@ class RealLedger(IntegrityLedger):
     def __init__(
         self,
         *,
-        ledger_url: str = "",
-        credential: str = "",
-        contract_address: str = "",
+        ledger_url: str | None = None,
+        credential: str | None = None,
+        contract_address: str | None = None,
         chain_id: int | None = None,
     ) -> None:
-        self._ledger_url = ledger_url or getattr(settings, "INTEGRITY_LEDGER_URL", "")
-        self._credential = credential or getattr(settings, "INTEGRITY_LEDGER_CREDENTIAL", "")
-        self._contract_address = contract_address or getattr(settings, "INTEGRITY_CONTRACT_ADDRESS", "")
+        self._ledger_url = (
+            ledger_url
+            if ledger_url is not None
+            else getattr(settings, "INTEGRITY_LEDGER_URL", "")
+        )
+        self._credential = (
+            credential
+            if credential is not None
+            else getattr(settings, "INTEGRITY_LEDGER_CREDENTIAL", "")
+        )
+        self._contract_address = (
+            contract_address
+            if contract_address is not None
+            else getattr(settings, "INTEGRITY_CONTRACT_ADDRESS", "")
+        )
         self._chain_id = chain_id or getattr(settings, "INTEGRITY_CHAIN_ID", 11155111)
 
-        # Private key formatting (starts with 0x)
-        if self._credential and not self._credential.startswith("0x"):
-            self._credential = "0x" + self._credential
-
-        self._configured = bool(self._ledger_url and self._contract_address and self._credential)
+        # Configured means connection coordinates are declared
+        self._configured = bool(self._ledger_url and self._credential)
         self._w3: Any = None
         self._account: Any = None
         self._contract: Any = None
 
-        if self._configured:
+        if self._configured and self._contract_address:
             try:
                 from web3 import Web3
                 from eth_account import Account
 
+                # Private key formatting (starts with 0x)
+                clean_cred = self._credential
+                if clean_cred and not clean_cred.startswith("0x") and not clean_cred.startswith("ref:"):
+                    clean_cred = "0x" + clean_cred
+
+                if clean_cred and not clean_cred.startswith("ref:"):
+                    self._account = Account.from_key(clean_cred)
                 self._w3 = Web3(Web3.HTTPProvider(self._ledger_url, request_kwargs={"timeout": 15}))
-                self._account = Account.from_key(self._credential)
                 checksum_address = Web3.to_checksum_address(self._contract_address)
                 self._contract = self._w3.eth.contract(
                     address=checksum_address,
@@ -84,7 +99,6 @@ class RealLedger(IntegrityLedger):
                 )
             except Exception as exc:
                 logger.error("Failed to initialize Web3 RealLedger: %s", exc)
-                self._configured = False
 
     @property
     def configured(self) -> bool:
@@ -185,8 +199,18 @@ class RealLedger(IntegrityLedger):
         try:
             clean_digest = digest.replace("0x", "")[:64]
             artifact_bytes32 = bytes.fromhex(clean_digest)
-            exists, _, _, _ = self._contract.functions.verifyDigest(artifact_bytes32).call()
+            exists, timestamp, provenance, recorder = self._contract.functions.verifyDigest(artifact_bytes32).call()
             if exists:
+                # Security validation: ensure digest was registered by our authorized relayer address
+                if self._account and recorder:
+                    if str(recorder).lower() != str(self._account.address).lower():
+                        logger.warning(
+                            "Provenance recorder mismatch: digest %s recorded by untrusted address %s (expected %s)",
+                            digest,
+                            recorder,
+                            self._account.address,
+                        )
+                        return LedgerStatus.UNAVAILABLE
                 return LedgerStatus.VERIFIED
             return LedgerStatus.NOT_FOUND
         except Exception as exc:
