@@ -28,8 +28,9 @@
 12. [Testing & Quality Assurance](#12-testing--quality-assurance)
 13. [Economic Viability & Cost Structure](#13-economic-viability--cost-structure)
 14. [Empirical Evidence & Benchmark Validation](#14-empirical-evidence--benchmark-validation)
-15. [Repository Structure](#15-repository-structure)
-16. [Live References & Submission Metadata](#16-live-references--submission-metadata)
+15. [Extended PS Capabilities & Roadmap](#15-extended-ps-capabilities--roadmap)
+16. [Repository Structure](#16-repository-structure)
+17. [Live References & Submission Metadata](#17-live-references--submission-metadata)
 
 ---
 
@@ -540,7 +541,18 @@ A targeted red-team assessment was conducted testing 50 attack vectors across 5 
 
 ---
 
-## 15. Repository Structure
+## 15. Extended PS Capabilities & Roadmap
+
+To ensure 100% compliance with every nuance of SIH Problem Statement 26154:
+
+* **Slide Deck Speaker Notes:** The Presentation generator (`python-pptx`) automatically compiles structured, executive **Speaker Notes** directly into each slide's metadata for presentation delivery.
+* **Granular Transformation Controls:** In addition to Audience and Tone, operators can configure **Level of Detail** (`Brief Summary`, `Standard`, `Comprehensive Deep-Dive`) and **Content Style** (`Analytical`, `Advisory`, `Action-Oriented Narrative`).
+* **Video Ingestion Roadmap:** While the engine currently ingests PDF, DOCX, CSV, PPTX, and Image OCR natively, raw video ingestion (MP4/MKV) via local Whisper audio-transcription pipeline is on the Phase 2 production roadmap.
+* **Multilingual Indic Processing:** Supports UTF-8 encoded Indic multilingual outputs (English, Hindi, and Marathi) across all 7 format adapters.
+
+---
+
+## 16. Repository Structure
 
 ```text
 KaryaSetu/
@@ -581,7 +593,7 @@ KaryaSetu/
 
 ---
 
-## 16. Live References & Submission Metadata
+## 17. Live References & Submission Metadata
 
 * **Problem Statement ID:** SIH 26154
 * **Problem Statement Title:** Gen AI Platform for Automated Content Transformation
