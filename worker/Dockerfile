@@ -12,7 +12,13 @@ WORKDIR /app
 
 COPY worker/requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt \
+    && python -m spacy download en_core_web_sm
+
+ARG PRELOAD_BERT_PII=false
+RUN if [ "$PRELOAD_BERT_PII" = "true" ]; then \
+        python -c "from transformers import AutoTokenizer, AutoModelForTokenClassification; AutoTokenizer.from_pretrained('dslim/bert-base-NER'); AutoModelForTokenClassification.from_pretrained('dslim/bert-base-NER')"; \
+    fi
 
 COPY worker/*.py /app/
 COPY backend/app /backend/app

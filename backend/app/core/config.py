@@ -510,6 +510,46 @@ class Settings(BaseSettings):
     CLAMAV_PORT: int = 3310
     CLAMAV_TIMEOUT_SECONDS: int = 10
 
+    # -------------------------------------------------------------------------
+    # PII detection (Phase 14A — Presidio + BERT)
+    # -------------------------------------------------------------------------
+    # Engine: "presidio" (Presidio + BERT/spaCy NER, falling back to regex
+    # when optional NLP packages are absent) | "regex" (Phase 11K rules only).
+    PII_ENGINE: Literal["presidio", "regex"] = "presidio"
+    PII_NLP_BACKEND: Literal["transformers", "spacy"] = "transformers"
+    PII_BERT_MODEL: str = "dslim/bert-base-NER"
+    PII_SCORE_THRESHOLD: float = 0.35
+    PII_CHUNK_SIZE: int = 400
+    PII_CHUNK_OVERLAP: int = 50
+
+    @field_validator("PII_SCORE_THRESHOLD")
+    @classmethod
+    def validate_pii_score_threshold(cls, v: float) -> float:
+        value = float(v)
+        if value < 0.0 or value > 1.0:
+            raise ValueError("PII_SCORE_THRESHOLD must be between 0.0 and 1.0.")
+        return value
+
+    @field_validator("PII_CHUNK_SIZE")
+    @classmethod
+    def validate_pii_chunk_size(cls, v: int) -> int:
+        return _positive_bounded(v, "PII_CHUNK_SIZE", 500)
+
+    @field_validator("PII_CHUNK_OVERLAP")
+    @classmethod
+    def validate_pii_chunk_overlap(cls, v: int) -> int:
+        if not isinstance(v, int) or isinstance(v, bool) or v < 0 or v > 250:
+            raise ValueError("PII_CHUNK_OVERLAP must be an integer in [0, 250].")
+        return v
+
+    @model_validator(mode="after")
+    def _validate_pii_chunking(self) -> "Settings":
+        if self.PII_CHUNK_OVERLAP >= self.PII_CHUNK_SIZE:
+            raise ValueError(
+                "PII_CHUNK_OVERLAP must be strictly less than PII_CHUNK_SIZE."
+            )
+        return self
+
     @property
     def allowed_upload_types_list(self) -> list[str]:
         return [t.strip() for t in self.ALLOWED_UPLOAD_TYPES.split(",") if t.strip()]
